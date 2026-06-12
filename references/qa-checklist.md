@@ -1,6 +1,8 @@
-# QA Checklist (Mandatory 7-Point Inspection)
+# QA Checklist (Mandatory Page-Level 7-Point Inspection)
 
 For **every rendered `preview/page-N.png`**, walk through these 7 checks. If any item fails, fix per `troubleshooting.md` and re-render. **Do not declare the deck done until every page passes all 7.**
+
+This file checks individual rendered pages. After all pages pass, run the whole-deck pass/fail checklist in `deck-qa-checklist.md`.
 
 ## ☐ Check 1 · Content stays in safe zone
 
@@ -56,6 +58,7 @@ For **every rendered `preview/page-N.png`**, walk through these 7 checks. If any
 ## ☐ Check 7 · Visual hierarchy is clean
 
 - One slide answers one question.
+- The planned proof object is visible and is the main focal point, unless the slide is cover / TOC / section break / summary / thanks.
 - Clear focal point: where does the eye land first?
 - Whitespace breathes — no card is pressed against another.
 - Card gaps are 0.2–0.3", section gaps are 0.12–0.15".
@@ -177,6 +180,7 @@ The deck is ready when:
 1. Every page passes all 7 universal checks.
 2. Every page passes its template-specific spot-checks.
 3. You have rendered and visually verified at least one PNG per page.
-4. The user has not raised any issues on a follow-up review.
+4. The deck passes `deck-qa-checklist.md`.
+5. The user has not raised any issues on a follow-up review.
 
 **Do not sign off based on "the code looks correct".** Visual QA catches at least one bug per ~5 pages on first pass.

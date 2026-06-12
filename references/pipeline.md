@@ -67,6 +67,7 @@ my-deck/
 │   ├── arch.png
 │   ├── results.png
 │   └── ...
+├── slide_contract.md            # optional but recommended planning record
 ├── gen_<section>.js            # one script per logical section
 ├── gen_<section>.js
 ├── output/                     # generated .pptx files (recommended .gitignore)
@@ -77,6 +78,18 @@ my-deck/
 ```
 
 ## Step-by-Step Generation
+
+### Planning gate before code
+
+Before writing or editing `gen_<section>.js`:
+
+1. Choose one preset from `references/presets.md`.
+2. Fill the slide contract from `references/slide-contract.md`.
+3. Confirm every content slide has one proof object and one base template from `T1`-`T16`.
+4. Check the planned deck rhythm against `references/deck-qa-checklist.md` so the deck does not become repeated cards.
+5. If using a controlled upgrade, write the base template and the reason in the contract before coding.
+
+If the contract fails, fix the plan first. Do not compensate by shrinking fonts or inventing a blank custom slide.
 
 ### 1. Prepare figures
 
@@ -184,12 +197,20 @@ If any page fails QA, fix the script per `troubleshooting.md` and re-run from St
 2. Delete or rename old `output/deck.pptx` (PowerPoint may lock it otherwise).
 3. Delete old PNG previews if you want clean slate, OR use a different prefix (`page2-`) to bypass IDE image cache.
 
+#### 4e. Run deck QA
+
+After every page passes the visual checklist, inspect the whole deck using `references/deck-qa-checklist.md`.
+
+Deck QA is pass/fail. It checks contact-sheet rhythm, repeated structures, missing proof slides, weak titles, missing result takeaways, and whether any controlled custom layout is still reproducible. If any item fails, update the slide contract, regenerate, rerender, and repeat page QA before signing off.
+
 ## Multi-Section Decks
 
 For decks ≥15 slides, split into one script per logical section. Each script outputs its own `.pptx`. Don't try to merge them programmatically — pptxgenjs has no merge API. Either:
 
 - **Recommended**: Keep them as separate files; present them as a sequence to the user. They can be rehearsed independently.
 - **If single-file required**: After generating individual `.pptx` files, manually combine in PowerPoint via "Reuse Slides" feature, or use a Python script with `python-pptx` to merge.
+
+Each major section still needs an anchor slide in the slide contract: a dominant method, result, timeline, KPI, image, or summary slide that gives the section a clear thumbnail identity.
 
 ## .gitignore Recommendations
 

@@ -254,6 +254,25 @@ Never paste raw paragraph prose onto a slide.
 - Add visual elements: numbered circles, accent stripes, KPI boxes.
 - Vary the page types — no two consecutive slides should use the same template.
 
+## Planning and Deck QA Repair Recipes
+
+Use these when the slide contract or `deck-qa-checklist.md` fails. Apply the fixed action first, then regenerate and rerun visual QA.
+
+| Failure | Repair action |
+|---|---|
+| Title is vague or generic | Rewrite as `topic + specific conclusion`. Example: "Results" -> "Ablation shows graph encoding drives the gain". |
+| One slide is too crowded | Split into 2 slides, or switch to T7/T8/T11 based on the proof object. Never solve by shrinking below the font floor. |
+| Three card/grid slides appear in a row | Insert or replace one slide with T5/T9/T11/T12/T13/T14/T15 as an anchor slide. |
+| Slide has no proof object | Pull a figure, table, flow, KPI, timeline, matrix, or comparison from the source; if none exists, convert the idea into T8, T11, or T15. |
+| Experiment page looks like data dumping | Add a takeaway bar, highlight the winning row/series, or split raw table and main result into separate T10 and T9/T13 slides. |
+| Method page only lists components | Rebuild as information flow, module relationship, pipeline, or causal chain using T11 or a T11-based local variant. |
+| Academic deck feels too commercial | Restore clear academic section navigation such as Introduction / Related Work / Method / Experiments / Conclusion, reduce sales-like claims, and keep topic titles concrete. |
+| Business/report deck has neutral topic titles | Convert important titles into claim-style messages that state what changed, why it matters, or what decision follows. |
+| Custom layout is failing visual QA | Keep the content, roll back to the nearest T1-T16 template, then add only one local component if still needed. |
+| Strong agent over-designed the deck | Keep the content but restore the active theme, font scale, nav/title/footer helpers, safe area, and T1-T16 base templates. |
+| Deck thumbnails look repetitive | Remap the slide contract before polishing: add a big image, big flow, big result, or big summary where the section needs an anchor. |
+| Summary does not close the argument | Rewrite it to connect problem, method, evidence, and meaning; use T15 instead of another card list. |
+
 ## When To Escalate
 
 If after 3 fix iterations the issue persists, the problem is likely structural rather than cosmetic:

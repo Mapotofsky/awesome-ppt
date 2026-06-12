@@ -1,11 +1,19 @@
 ---
 name: awesome-ppt
-description: Create polished .pptx decks programmatically with the user's established pptxgenjs workflow. Use for fast from-scratch decks, especially Chinese academic defenses, business/internal reports, training decks, courseware, talks, and routine slide generation when the user says "做PPT", "PPT", "幻灯片", "答辩", "汇报", "演讲稿", "课件", or explicitly asks for awesome-ppt/pptxgenjs. This skill provides a 5-step pipeline (theme -> plan -> generate -> preview -> fix), 5 ready-made themes, 16 page templates, and PowerPoint/PDF/PNG visual QA. For complex template-following, editing an existing PPTX while preserving its visual system, reference-deck beating, investor/board/IR/product-strategy narratives, or artifact-tool-native Codex delivery, prefer Codex Presentations instead.
+description: Create polished, editable, reproducible .pptx decks programmatically with the user's established pptxgenjs workflow. Use for fast from-scratch decks, especially Chinese academic defenses, business/internal reports, training decks, courseware, talks, and routine slide generation when the user says "做PPT", "PPT", "幻灯片", "答辩", "汇报", "演讲稿", "课件", or explicitly asks for awesome-ppt/pptxgenjs. This skill is a lower-bound stabilizer with fixed presets, themes, T1-T16 templates, slide contracts, and visual/deck QA so weaker agents can produce solid decks while stronger agents can make controlled upgrades. For complex template-following, editing an existing PPTX while preserving its visual system, reference-deck beating, investor/board/IR/product-strategy narratives, or artifact-tool-native Codex delivery, prefer Codex Presentations instead.
 ---
 
 # Awesome PPT Generator
 
 Build production-quality `.pptx` decks for ANY scenario by composing **themes** + **page templates** + **a foolproof QA loop**.
+
+## Positioning
+
+`awesome-ppt` is a **lower-bound stabilizer**, not an unrestricted creative design system. Its first job is to let a weaker or rushed AI produce a good, editable PowerPoint by following fixed presets, fixed themes, fixed templates, and fixed QA.
+
+Low freedom is intentional. Fixed themes, T1-T16 templates, slide contracts, and rendering QA prevent common model failures: random colors, cramped text, generic bullets, inconsistent navigation, and unverified overflow.
+
+Strong agents may make controlled upgrades only when the default template is insufficient for the content. Every upgrade must stay inside pptxgenjs, keep a reproducible script, pass visual QA and deck QA, and remain checkable and repairable.
 
 ## What This Skill Guarantees
 
@@ -13,6 +21,7 @@ Build production-quality `.pptx` decks for ANY scenario by composing **themes** 
 - Zero overflow / clipping (content always fits within safe area)
 - Reusable across academic, business, technical, training, and creative contexts
 - Idempotent regeneration (one script per section, edit + rerun freely)
+- A concrete planning contract before code, so each slide has one role, one message, and one proof object
 
 ## The 5-Step Pipeline (Always Follow This Order)
 
@@ -20,9 +29,9 @@ Build production-quality `.pptx` decks for ANY scenario by composing **themes** 
 |---|------|-------------|-----------|
 | 1 | **Clarify** | Ask the user the 4 framing questions below if unclear | this file |
 | 2 | **Choose theme** | Pick or compose a color theme | `references/themes.md` |
-| 3 | **Plan pages** | Map content to page templates | `references/page-templates.md` |
+| 3 | **Plan pages** | Choose a preset, fill the slide contract, then map content to page templates | `references/presets.md` + `references/slide-contract.md` + `references/page-templates.md` |
 | 4 | **Generate** | Copy `assets/boilerplate.js`, fill in slides, run | `references/pipeline.md` |
-| 5 | **QA** | Convert PPTX→PDF→PNG, inspect every page, fix overflows | `references/qa-checklist.md` + `references/troubleshooting.md` |
+| 5 | **QA** | Convert PPTX→PDF→PNG, inspect every page, then run deck-level pass/fail QA | `references/qa-checklist.md` + `references/deck-qa-checklist.md` + `references/troubleshooting.md` |
 
 > **Never skip Step 5.** Code that "looks right" routinely produces hidden overflow bugs. The user expects you to verify, not hope.
 
@@ -30,7 +39,7 @@ Build production-quality `.pptx` decks for ANY scenario by composing **themes** 
 
 If the user's request is vague, ask **at most these 4** and proceed:
 
-1. **Scenario**: Academic defense / business pitch / product launch / training / status report / other?
+1. **Scenario / preset**: Academic oral / academic defense / business report / training courseware / quick routine / other?
 2. **Audience & length**: Who watches it, and roughly how many slides total?
 3. **Theme preference**: Academic Red / Business Navy / Tech Cyan / Warm Amber / Minimal Mono — or a brand color (give hex)?
 4. **Source material**: Do they have a paper / doc / outline / slide draft to convert? Where is it?
@@ -51,9 +60,21 @@ Read `references/themes.md` and select one of the **5 prebuilt themes**:
 
 If the user provides a brand color, use the **theme composer** procedure at the bottom of `themes.md` instead.
 
+If `references/presets.md` recommends a theme and the user gave no preference, use the preset's recommendation. User-supplied brand colors or explicit theme choices override the preset.
+
 ## Step 3: Plan Pages
 
-Read `references/page-templates.md`. Pick from these **16 page archetypes**:
+First read `references/presets.md` and pick the closest preset. Then fill the slide contract from `references/slide-contract.md`. Do **not** write pptxgenjs code until the contract passes its rules.
+
+The contract forces every slide to have:
+
+- one role in the story,
+- one claim or topic,
+- one main proof object,
+- one base template from T1-T16,
+- one source.
+
+Read `references/page-templates.md` after the contract has a first draft. Pick from these **16 page archetypes**:
 
 ```
 T1  Cover                 T9   Chart / Data
@@ -71,6 +92,8 @@ A typical 10-slide business deck looks like:
 
 A typical 25-slide academic defense looks like:
 `T1 → T2 → T3 (intro) → T4 → T5 → T3 (related work) → T6 → T7 → T3 (method) → T11 → T6 ×2 → T3 (experiments) → T10 → T9 → T13 → T3 (conclusion) → T15 → T16`
+
+If the default template cannot express a method, result, or KPI proof object clearly, use the controlled-upgrade rules in `references/slide-contract.md`. The base template must still be visible in the plan, for example `T9 + takeaway side rail`, not "custom slide".
 
 ## Step 4: Generate
 
@@ -96,6 +119,8 @@ pdftoppm -png -r 130 preview\preview.pdf preview\page
 
 Then for each `preview\page-N.png`, run through the **mandatory 7-point checklist** in `references/qa-checklist.md`. If anything fails, consult `references/troubleshooting.md` for the fix recipe and regenerate.
 
+After all pages pass visual QA, run the deck-level pass/fail checklist in `references/deck-qa-checklist.md`. This catches repeated layouts, missing proof slides, weak titles, and uncontrolled custom layouts.
+
 ## The Golden Rules (Defaults That Prevent 90% of Bugs)
 
 These rules apply universally regardless of theme or template. Violating them produces broken slides.
@@ -110,6 +135,8 @@ These rules apply universally regardless of theme or template. Violating them pr
 8. **Numbered circles are 0.42–0.45" diameter**. Smaller looks weak; larger steals visual weight from titles.
 9. **Image embedding always uses `sizing: { type: "contain", w, h }`**. The `contain` mode prevents distortion.
 10. **Right-aligned labels need ≥0.4" right margin**. Without it, text gets clipped at projector edges.
+11. **Slide contract comes before code**. If a slide has no role, message, proof object, template, or source, it is not ready to generate.
+12. **Controlled upgrades are local, not blank-canvas redesigns**. Start from T1-T16, keep theme colors and helpers, render-check the result, and roll back if it fails QA.
 
 ## Anti-Patterns (Things That Look Reasonable But Fail)
 
@@ -128,9 +155,12 @@ These rules apply universally regardless of theme or template. Violating them pr
 When you need to know... → Read this file:
 
 - Color palettes, theme tables, brand-color composer → `references/themes.md`
+- Scenario presets and default page sequences → `references/presets.md`
+- Slide contract fields, pass/fail rules, controlled upgrades → `references/slide-contract.md`
 - Visual sketches + drop-in code for each of 16 page templates → `references/page-templates.md`
 - Full setup commands (NODE_PATH, npm install, OS-specific PDF conversion) → `references/pipeline.md`
 - The 7-point QA inspection checklist → `references/qa-checklist.md`
+- Whole-deck contact-sheet rules and pass/fail deck QA → `references/deck-qa-checklist.md`
 - Common bugs and copy-paste fixes → `references/troubleshooting.md`
 - Starter script with all helpers wired up → `assets/boilerplate.js`
 - Worked example (one minimal complete deck) → `assets/example_minimal.js`

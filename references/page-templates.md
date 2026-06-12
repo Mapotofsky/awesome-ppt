@@ -25,6 +25,29 @@
 
 ---
 
+## Template Selection Contract
+
+Use T1-T16 as the default design space. The slide contract must name one base template per slide before code is written.
+
+Pass/fail rules:
+
+- Pick the template from the proof object, not from aesthetics. Chart/result -> T9/T13/T5; process/method -> T11; comparison -> T6; dense specs -> T10; recap -> T15.
+- Every content slide gets one main proof object. Do not combine unrelated chart + table + flow on one slide.
+- If a slide is overloaded, split it or switch to a better base template. Do not reduce text below the font floor.
+- Use `T# + local variant` only when T1-T16 cannot express the proof object clearly.
+- A local variant may add a takeaway bar, side rail, callout stack, or small component borrowed from another template.
+- A local variant may not remove the nav/title/footer regions, ignore theme colors, or become a blank-canvas design.
+
+Macro-layout rhythm:
+
+- Treat `T4`, `T7`, `T8`, and `T10` as card/grid-heavy layouts. Avoid 3 consecutive card/grid-heavy slides.
+- Treat `T5`, `T9`, `T11`, `T12`, `T13`, `T14`, and `T15` as anchor-capable layouts. Use at least one anchor-capable slide per major section.
+- Method sections need `T11` or a controlled T11-based variant.
+- Experiment/data sections need at least one main result proof slide using `T5`, `T9`, or `T13`; tables alone are not enough.
+- When thumbnails look repetitive, remap a slide to an anchor-capable template before tweaking colors or spacing.
+
+---
+
 ## T1 · Cover
 
 Use for **slide 1**. The most polished cover has: large title, subtitle / English version, author + date + venue strip.
