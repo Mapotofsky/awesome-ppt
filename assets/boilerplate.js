@@ -85,7 +85,7 @@ function addNav(slide, active) {
     });
     slide.addText(DECK_TITLE_BAR, {
       x: 0.4, y: 0.05, w: W - 0.8, h: 0.4,
-      fontFace: F.cn, fontSize: 11,
+      fontFace: F.cn, fontSize: 12,
       color: C.white, align: "left", valign: "middle", margin: 0,
     });
     return;
@@ -96,7 +96,7 @@ function addNav(slide, active) {
   });
   slide.addText(DECK_TITLE_BAR, {
     x: 0.4, y: 0.05, w: 6.5, h: 0.4,
-    fontFace: F.cn, fontSize: 11,
+    fontFace: F.cn, fontSize: 12,
     color: C.white, align: "left", valign: "middle", margin: 0,
   });
   const itemW = 1.2;
@@ -105,7 +105,7 @@ function addNav(slide, active) {
     const isActive = idx === active;
     slide.addText(item, {
       x: startX + idx * itemW, y: 0.05, w: itemW, h: 0.4,
-      fontFace: F.cn, fontSize: 11,
+      fontFace: F.cn, fontSize: 12,
       color: isActive ? C.accentLight : C.white,
       bold: isActive,
       align: "center", valign: "middle", margin: 0,
@@ -147,7 +147,7 @@ function addTitle(slide, title, sub) {
 function addFooter(slide, pageNum) {
   slide.addText(`${pres.author}  ·  ${SECTION_NAME || pres.title}`, {
     x: 0.4, y: H - 0.4, w: 6, h: 0.3,
-    fontFace: F.cn, fontSize: 10,
+    fontFace: F.cn, fontSize: 12,
     color: C.muted, align: "left", valign: "middle", margin: 0,
   });
   const right = (pageNum === "—" || pageNum == null)
@@ -155,7 +155,7 @@ function addFooter(slide, pageNum) {
     : `${SECTION_NAME ? SECTION_NAME + "  ·  " : ""}${pageNum} / ${TOTAL_PAGES}`;
   slide.addText(right, {
     x: W - 4.4, y: H - 0.4, w: 4, h: 0.3,
-    fontFace: F.cn, fontSize: 10,
+    fontFace: F.cn, fontSize: 12,
     color: C.muted, align: "right", valign: "middle", margin: 0,
   });
 }

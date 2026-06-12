@@ -28,6 +28,7 @@ Fill this table before writing pptxgenjs code. The contract turns planning into 
 - If a slide needs more than one proof object, split it instead of shrinking fonts or stacking unrelated visuals.
 - Template must be one of `T1`-`T16` or `T# + local variant`.
 - Source cannot be blank. Use `assumption` only when the user did not provide material and the deck is explicitly being drafted from scratch.
+- Each deck must define color semantics and use them consistently; colors must not randomly carry conflicting meanings.
 
 ## Controlled Upgrade Rules
 

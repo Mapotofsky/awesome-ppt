@@ -39,10 +39,12 @@ This file checks individual rendered pages. After all pages pass, run the whole-
 ## ☐ Check 5 · Theme colors used consistently
 
 - No surprise hex codes — every color comes from the active theme's `C` object.
+- Deck-level color semantics are defined and used consistently.
 - Primary color appears on: nav bar, "our work" titles, KPI emphasis.
 - Accent color appears on: title left-bar, formula boxes, highlights on dark backgrounds.
 - Contrast color appears only on: "problem"/"before" titles, never on positive content.
 - Body text is `text` (near-black), captions are `muted` (gray).
+- Lines, bars, numbered markers, and strong accents have a structural or semantic purpose; meaningless decorative lines, inconsistent number colors, or random strong-color mixing fail QA.
 
 **How to verify**: scan the slide for any color that "feels off" — a stray bright blue on an academic-red deck, a warm tan on a tech-cyan deck. If you see one, hunt down the inline hex and replace with `C.accent` etc.
 
@@ -51,7 +53,8 @@ This file checks individual rendered pages. After all pages pass, run the whole-
 - Embedded figures are not pixelated or stretched.
 - Aspect ratio is preserved (use `sizing: { type: "contain", w, h }`).
 - Image fills its container with reasonable padding (0.15–0.2" from card edge).
-- Diagrams/text within images is large enough to read at projector distance.
+- Generated text is ≥12pt by default, including captions, footers, tables, chart labels, legends, and value labels.
+- Text inside embedded source images is not counted as generated text, but the image must still be clear and not over-shrunk.
 
 **How to verify**: zoom into the rendered PNG at 100%. If the embedded image is blurry, regenerate the source PNG at higher DPI (`pdftoppm -r 250` or higher).
 
@@ -117,7 +120,7 @@ After the 7 universal checks, run template-specific checks based on the slide ty
 
 ### Chart (T9)
 
-- ☐ Axis labels are readable (≥ 9pt).
+- ☐ Axis labels are readable (≥ 12pt by default).
 - ☐ Legend is positioned at bottom with theme colors.
 - ☐ Takeaway bar (if present) is single-line and bold.
 

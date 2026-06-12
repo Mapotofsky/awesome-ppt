@@ -128,8 +128,8 @@ These rules apply universally regardless of theme or template. Violating them pr
 1. **Canvas is `13.333" × 7.5"`** (`LAYOUT_WIDE`). Never use a different layout.
 2. **Safe content area is `y=1.85` to `y=7.1`** — total **5.25"** vertical budget. Sum of all card heights + gaps must be ≤ 5.25.
 3. **Every slide has 3 fixed regions**: nav bar (`y=0–0.5`), title area (`y=0.78–1.7`), footer (`y=7.1–7.5`). Use the helpers `addNav`, `addTitle`, `addFooter` from the boilerplate — do not redraw them.
-4. **All colors come from the active theme's `C` object**. Never inline hex strings in slide code; if you need a new color, add it to `C` first.
-5. **Font sizes follow a fixed scale**: cover title 36pt · slide title 26pt · section header 14–16pt · card title 13–15pt · body 11–13pt · footnote 9–10pt. Going smaller than 9pt is forbidden (illegible at projector distance).
+4. **All colors come from the active theme's `C` object**. Define deck-level color semantics before generation and use them consistently; never inline hex strings in slide code.
+5. **Generated text defaults to ≥12pt**: body text, captions, footers, tables, chart labels, legends, card text, and value labels. Use 10–11pt only as a recorded QA exception after trimming, enlarging, reflowing, or splitting cannot solve the layout.
 6. **Chinese fonts use `Microsoft YaHei`, English uses `Calibri`**. Mixing is fine within one text run via `fontFace` per option.
 7. **All white cards use `makeShadow()` for depth**. Colored bars (titles, headers) do NOT get shadows.
 8. **Numbered circles are 0.42–0.45" diameter**. Smaller looks weak; larger steals visual weight from titles.
@@ -144,7 +144,7 @@ These rules apply universally regardless of theme or template. Violating them pr
 |----------|-------|-----|
 | Dump bullet lists onto a slide | Restructure into cards / matrix / flow | Bullets read as "lazy AI output", not professional |
 | Use 5+ colors on one page | Stick to 2 main + 1 accent from the theme | Color noise destroys hierarchy |
-| Auto-fit text by shrinking font | Cut content or split to two slides | Tiny text fails the 9pt rule |
+| Auto-fit text with `fit: "shrink"` or smaller fonts | Cut content, enlarge/reflow, or split; record any 10–11pt exception | Tiny text fails the 12pt generated-text rule |
 | Hand-write hex codes inline | Reference `C.navy` / `C.gold` etc. | Inconsistency = unprofessional |
 | Skip QA "because the code looks right" | Always render PNGs and inspect | Overflow bugs are invisible in source |
 | Use stock-photo placeholders | Use the user's actual figures, or skip | Stock photos look generic |

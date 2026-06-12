@@ -46,7 +46,7 @@ function addNav(s, active) {
   });
   s.addText(pres.title, {
     x: 0.4, y: 0.05, w: 6.5, h: 0.4,
-    fontFace: F.cn, fontSize: 11, color: C.white, valign: "middle", margin: 0,
+    fontFace: F.cn, fontSize: 12, color: C.white, valign: "middle", margin: 0,
   });
   const itemW = 1.2;
   const startX = W - NAV_ITEMS.length * itemW - 0.3;
@@ -54,7 +54,7 @@ function addNav(s, active) {
     const isActive = i === active;
     s.addText(it, {
       x: startX + i * itemW, y: 0.05, w: itemW, h: 0.4,
-      fontFace: F.cn, fontSize: 11,
+      fontFace: F.cn, fontSize: 12,
       color: isActive ? C.accentLight : C.white,
       bold: isActive, align: "center", valign: "middle", margin: 0,
     });
@@ -92,12 +92,12 @@ function addTitle(s, title, sub) {
 function addFooter(s, pageNum) {
   s.addText(`${pres.author}  ·  ${SECTION_NAME}`, {
     x: 0.4, y: H - 0.4, w: 6, h: 0.3,
-    fontFace: F.cn, fontSize: 10, color: C.muted, valign: "middle", margin: 0,
+    fontFace: F.cn, fontSize: 12, color: C.muted, valign: "middle", margin: 0,
   });
   const right = (pageNum === "—") ? "—" : `${pageNum} / ${TOTAL_PAGES}`;
   s.addText(right, {
     x: W - 4.4, y: H - 0.4, w: 4, h: 0.3,
-    fontFace: F.cn, fontSize: 10, color: C.muted, align: "right", valign: "middle", margin: 0,
+    fontFace: F.cn, fontSize: 12, color: C.muted, align: "right", valign: "middle", margin: 0,
   });
 }
 
@@ -226,7 +226,7 @@ function addFooter(s, pageNum) {
       });
       s.addText(it.desc, {
         x: side.x + 0.85, y: py + 0.4, w: CW - 1.05, h: 0.7,
-        fontFace: F.cn, fontSize: 11.5, color: C.textLight, valign: "top", margin: 0,
+        fontFace: F.cn, fontSize: 12, color: C.textLight, valign: "top", margin: 0,
       });
     });
   });
@@ -281,7 +281,7 @@ function addFooter(s, pageNum) {
     });
     s.addText(m.sub, {
       x: x + 0.2, y: cardY + 2.0, w: cardW - 0.4, h: 0.35,
-      fontFace: F.cn, fontSize: 10, italic: true,
+      fontFace: F.cn, fontSize: 12, italic: true,
       color: C.muted, align: "center", valign: "middle", margin: 0,
     });
   });

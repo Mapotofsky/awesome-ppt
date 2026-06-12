@@ -75,30 +75,31 @@ sum(card_heights) + sum(gaps) ≤ 5.25
 If your design needs more, compress in this order:
 
 1. Reduce inter-card gaps from 0.3 → 0.15.
-2. Reduce font sizes by 1pt across body text (e.g., 12 → 11).
+2. Tighten wording or drop one bullet/item per card.
 3. Reduce card padding (`y + 0.2` → `y + 0.15`).
-4. As a last resort, drop one bullet/item per card.
+4. Reflow or split the slide.
+5. Only if all layout fixes fail, record a QA exception and reduce the least important generated text to 10–11pt.
 
 ### Right-aligned label text is clipped
 
 **Cause**: Text width exceeds the text frame's right boundary.
 
-**Fix**: Shorten the label, OR widen the frame, OR reduce font size:
+**Fix**: Shorten the label or widen the frame; reduce font size only as a recorded QA exception:
 
 ```js
 // ❌ clipped because frame width 4 is too narrow for long Chinese label
-s.addText("第一作者 · CCF-C 类国际学术会议", {
-  x: W - 4.4, y: top, w: 4, h: 0.5, align: "right", fontSize: 11, ...
+s.addText("第一作者 · CCF-A 类国际学术会议", {
+  x: W - 4.4, y: top, w: 4, h: 0.5, align: "right", fontSize: 12, ...
 });
 
 // ✅ shortened
-s.addText("第一作者 · CCF-C 类会议", {
-  x: W - 4.4, y: top, w: 4, h: 0.5, align: "right", fontSize: 11, ...
+s.addText("第一作者 · CCF-A 类会议", {
+  x: W - 4.4, y: top, w: 4, h: 0.5, align: "right", fontSize: 12, ...
 });
 
 // ✅ alternatively, widen
-s.addText("第一作者 · CCF-C 类国际学术会议", {
-  x: W - 5.5, y: top, w: 5.1, h: 0.5, align: "right", fontSize: 11, ...
+s.addText("第一作者 · CCF-A 类国际学术会议", {
+  x: W - 5.5, y: top, w: 5.1, h: 0.5, align: "right", fontSize: 12, ...
 });
 ```
 

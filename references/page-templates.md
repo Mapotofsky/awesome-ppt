@@ -152,20 +152,15 @@ function slideTOC(s, { sections }) {
     if (sec.subtitle) {
       s.addText(sec.subtitle, {
         x: 2.4, y: y + rowH * 0.55, w: 8.0, h: rowH * 0.4,
-        fontFace: F.en, fontSize: 11, italic: true,
+        fontFace: F.en, fontSize: 12, italic: true,
         color: C.muted, align: "left", valign: "top", margin: 0,
       });
     }
-    // Decorative line
-    s.addShape(pres.shapes.RECTANGLE, {
-      x: 10.6, y: y + rowH * 0.45, w: 1.8, h: 0.04,
-      fill: { color: C.accent }, line: { type: "none" },
-    });
     // Page number (optional)
     if (sec.page) {
       s.addText(`P.${sec.page}`, {
         x: 11.4, y, w: 1.0, h: rowH,
-        fontFace: F.en, fontSize: 11,
+        fontFace: F.en, fontSize: 12,
         color: C.muted, align: "right", valign: "middle", margin: 0,
       });
     }
@@ -445,7 +440,7 @@ function slideCompare(s, { title, subtitle, navIdx, page, left, right }) {
       });
       s.addText(it.desc, {
         x: x + 0.85, y: py + 0.4, w: CW - 1.05, h: 0.6,
-        fontFace: F.cn, fontSize: 11.5,
+        fontFace: F.cn, fontSize: 12,
         color: C.textLight, valign: "top", margin: 0,
       });
     });
@@ -506,7 +501,7 @@ function slideTriple(s, { title, subtitle, navIdx, page, cards }) {
     });
     s.addText(c.subtitle, {
       x: x + 0.85, y: CY + 0.55, w: CW - 1.0, h: 0.4,
-      fontFace: F.cn, fontSize: 11,
+      fontFace: F.cn, fontSize: 12,
       color: C.accentLight, valign: "middle", margin: 0,
     });
     // Body
@@ -522,7 +517,7 @@ function slideTriple(s, { title, subtitle, navIdx, page, cards }) {
     }));
     s.addText(bulletList, {
       x: x + 0.25, y: CY + 1.2, w: CW - 0.5, h: CH - 2.3,
-      fontFace: F.cn, fontSize: 11.5, color: C.text,
+      fontFace: F.cn, fontSize: 12, color: C.text,
       valign: "top", margin: 0,
     });
     // KPI box
@@ -609,14 +604,14 @@ function slideMatrix(s, { title, subtitle, navIdx, page, quadrants }) {
     if (q.subtitle) {
       s.addText(q.subtitle, {
         x: x + 1.1, y: y + 0.6, w: CW - 1.3, h: 0.3,
-        fontFace: F.en, fontSize: 11, italic: true,
+        fontFace: F.en, fontSize: 12, italic: true,
         color: C.muted, valign: "middle", margin: 0,
       });
     }
     // Gap label + description
     s.addText([
-      { text: q.gapLabel || "现状", options: { bold: true, color: C.primary, fontSize: 11 } },
-      { text: "  " + q.gap, options: { color: C.textLight, fontSize: 11 } },
+      { text: q.gapLabel || "现状", options: { bold: true, color: C.primary, fontSize: 12 } },
+      { text: "  " + q.gap, options: { color: C.textLight, fontSize: 12 } },
     ], {
       x: x + 0.3, y: y + 1.1, w: CW - 0.5, h: 0.7,
       fontFace: F.cn, valign: "top", margin: 0,
@@ -629,7 +624,7 @@ function slideMatrix(s, { title, subtitle, navIdx, page, quadrants }) {
       });
       s.addText("→  " + q.nextStep, {
         x: x + 0.3, y: y + CH - 0.6, w: CW - 0.5, h: 0.4,
-        fontFace: F.cn, fontSize: 11, bold: true, italic: true,
+        fontFace: F.cn, fontSize: 12, bold: true, italic: true,
         color: C.primary, align: "center", valign: "middle", margin: 0,
       });
     }
@@ -667,12 +662,12 @@ function slideChart(s, { title, subtitle, navIdx, page, chartType, data, takeawa
     chartColors: [C.primary, C.accent, C.contrast, C.primaryLight],
     chartArea:  { fill: { color: C.iceLight } },
     plotArea:   { fill: { color: C.iceLight } },
-    catAxisLabelColor: C.muted, catAxisLabelFontFace: F.cn, catAxisLabelFontSize: 10,
-    valAxisLabelColor: C.muted, valAxisLabelFontFace: F.cn, valAxisLabelFontSize: 10,
+    catAxisLabelColor: C.muted, catAxisLabelFontFace: F.cn, catAxisLabelFontSize: 12,
+    valAxisLabelColor: C.muted, valAxisLabelFontFace: F.cn, valAxisLabelFontSize: 12,
     valGridLine: { color: C.border, size: 0.5 },
     catGridLine: { style: "none" },
     showLegend: true, legendPos: "b",
-    legendFontFace: F.cn, legendFontSize: 11, legendColor: C.text,
+    legendFontFace: F.cn, legendFontSize: 12, legendColor: C.text,
     lineSize: 2.5, lineSmooth: true,
   });
 
@@ -712,15 +707,15 @@ function slideTable(s, { title, subtitle, navIdx, page, headers, rows, highlight
   // Build cell array with styling
   const headerStyle = {
     bold: true, color: C.white, fill: { color: C.primaryDark },
-    align: "center", valign: "middle", fontFace: F.cn, fontSize: 11,
+    align: "center", valign: "middle", fontFace: F.cn, fontSize: 12,
   };
   const cellBase = {
     color: C.text, align: "center", valign: "middle",
-    fontFace: F.cn, fontSize: 10.5,
+    fontFace: F.cn, fontSize: 12,
   };
   const highlightStyle = {
     bold: true, color: C.white, fill: { color: C.primary },
-    align: "center", valign: "middle", fontFace: F.cn, fontSize: 11,
+    align: "center", valign: "middle", fontFace: F.cn, fontSize: 12,
   };
 
   const tableData = [
@@ -745,7 +740,7 @@ function slideTable(s, { title, subtitle, navIdx, page, headers, rows, highlight
   if (footnote) {
     s.addText(footnote, {
       x: 0.4, y: H - 1.0, w: W - 0.8, h: 0.4,
-      fontFace: F.cn, fontSize: 10, italic: true,
+      fontFace: F.cn, fontSize: 12, italic: true,
       color: C.muted, align: "left", valign: "middle", margin: 0,
     });
   }
@@ -808,7 +803,7 @@ function slideFlow(s, { title, subtitle, navIdx, page, steps, summary }) {
     // Caption below
     s.addText(st.desc, {
       x: x - 0.1, y: yMid + stepH / 2 + 0.15, w: stepW + 0.2, h: 0.7,
-      fontFace: F.cn, fontSize: 10,
+      fontFace: F.cn, fontSize: 12,
       color: C.textLight, align: "center", valign: "top", margin: 0,
     });
     // Arrow
@@ -883,7 +878,7 @@ function slideTimeline(s, { title, subtitle, navIdx, page, milestones }) {
     // Description
     s.addText(m.desc, {
       x: cx - 1.3, y: above ? yLine - 0.9 : yLine + 1.1, w: 2.6, h: 0.7,
-      fontFace: F.cn, fontSize: 10,
+      fontFace: F.cn, fontSize: 12,
       color: C.textLight, align: "center", valign: "top", margin: 0,
     });
   });
@@ -945,7 +940,7 @@ function slideKPI(s, { title, subtitle, navIdx, page, metrics, narrative }) {
     if (m.sub) {
       s.addText(m.sub, {
         x: x + 0.2, y: cardY + 2.0, w: cardW - 0.4, h: 0.35,
-        fontFace: F.cn, fontSize: 10, italic: true,
+        fontFace: F.cn, fontSize: 12, italic: true,
         color: C.muted, align: "center", valign: "middle", margin: 0,
       });
     }
